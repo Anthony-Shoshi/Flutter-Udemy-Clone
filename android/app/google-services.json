@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "880357747983",
+    "project_id": "flutter-udemy-clone-edf1e",
+    "storage_bucket": "flutter-udemy-clone-edf1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880357747983:android:ae2e2352cd23619983e27a",
+        "android_client_info": {
+          "package_name": "com.example.UdemyClone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880357747983-n6noa4ra6f58hfo0no7cmb37uq6sapv4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd7l4SiZ5595sdnJ26fXpKErhIBNm16Z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880357747983-n6noa4ra6f58hfo0no7cmb37uq6sapv4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
 import 'package:UdemyClone/Controller/DataController.dart';
 import 'package:UdemyClone/Screens/DetailsScreens/detailsScreen.dart';
 import 'package:UdemyClone/Screens/HomeScreens/MyList.dart';
+import 'package:UdemyClone/Services/Authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,7 @@ class WishList extends StatefulWidget {
 }
 
 class _WishListState extends State<WishList> {
-  QuerySnapshot querySnapshot;
-
+  Authentication authentication = Authentication();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +48,7 @@ class _WishListState extends State<WishList> {
         init: DataController(),
         builder: (value) {
           return FutureBuilder(
-            future: value.getWishlistData(),
+            future: value.getWishlistData(authentication.user.uid),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
@@ -93,16 +93,9 @@ class _WishListState extends State<WishList> {
                         },
                         child: GestureDetector(
                           onTap: () {
-                            FirebaseFirestore.instance
-                                .collection('top')
-                                .where('title',
-                                    isEqualTo:
-                                        snapshot.data[index].data()['title'])
-                                .get()
-                                .then((value) => querySnapshot = value);
                             Get.to(
                               () => DetailsScreen(),
-                              arguments: querySnapshot.docs[index],
+                              arguments: snapshot.data[index],
                             );
                           },
                           child: Padding(
@@ -139,12 +132,16 @@ class _WishListState extends State<WishList> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            snapshot.data[index]
-                                                .data()['title'],
-                                            style: TextStyle(
-                                              color: Colors.grey.shade300,
-                                              fontSize: 18.0,
+                                          SizedBox(
+                                            width: 220.0,
+                                            child: Text(
+                                              snapshot.data[index]
+                                                  .data()['title'],
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                color: Colors.grey.shade300,
+                                                fontSize: 18.0,
+                                              ),
                                             ),
                                           ),
                                           Text(

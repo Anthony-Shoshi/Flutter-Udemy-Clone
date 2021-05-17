@@ -60,11 +60,15 @@ class _SearchState extends State<Search> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              snapshot.docs[index].data()['title'],
-                              style: TextStyle(
-                                color: Colors.grey.shade300,
-                                fontSize: 18.0,
+                            SizedBox(
+                              width: 220.0,
+                              child: Text(
+                                snapshot.docs[index].data()['title'],
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Colors.grey.shade300,
+                                  fontSize: 18.0,
+                                ),
                               ),
                             ),
                             Text(

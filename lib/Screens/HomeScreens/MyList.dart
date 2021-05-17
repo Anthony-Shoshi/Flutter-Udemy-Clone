@@ -1,5 +1,6 @@
 import 'package:UdemyClone/Controller/DataController.dart';
 import 'package:UdemyClone/Screens/DetailsScreens/detailsScreen.dart';
+import 'package:UdemyClone/Services/Authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,8 +11,7 @@ class MyList extends StatefulWidget {
 }
 
 class _MyListState extends State<MyList> {
-  QuerySnapshot querySnapshot;
-
+  Authentication authentication = Authentication();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class _MyListState extends State<MyList> {
         init: DataController(),
         builder: (value) {
           return FutureBuilder(
-            future: value.getCartData(),
+            future: value.getCartData(authentication.user.uid),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
@@ -69,17 +69,10 @@ class _MyListState extends State<MyList> {
                         },
                         child: GestureDetector(
                           onTap: () {
-                            FirebaseFirestore.instance
-                                .collection('top')
-                                .where('title',
-                                    isEqualTo:
-                                        snapshot.data[index].data()['title'])
-                                .get()
-                                .then((value) => querySnapshot = value);
                             Get.to(
                               () => DetailsScreen(),
                               transition: Transition.rightToLeftWithFade,
-                              arguments: querySnapshot.docs[index],
+                              arguments: snapshot.data[index],
                             );
                           },
                           child: Padding(
@@ -116,12 +109,16 @@ class _MyListState extends State<MyList> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            snapshot.data[index]
-                                                .data()['title'],
-                                            style: TextStyle(
-                                              color: Colors.grey.shade300,
-                                              fontSize: 18.0,
+                                          SizedBox(
+                                            width: 220.0,
+                                            child: Text(
+                                              snapshot.data[index]
+                                                  .data()['title'],
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                color: Colors.grey.shade300,
+                                                fontSize: 18.0,
+                                              ),
                                             ),
                                           ),
                                           Text(

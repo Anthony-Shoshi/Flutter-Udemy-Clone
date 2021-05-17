@@ -166,11 +166,15 @@ class _FeaturedState extends State<Featured> {
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(left: 10.0),
-                                      child: Text(
-                                        snapshot.data[index].data()['title'],
-                                        style: TextStyle(
-                                          color: Colors.grey.shade300,
-                                          fontSize: 18.0,
+                                      child: SizedBox(
+                                        width: 200.0,
+                                        child: Text(
+                                          snapshot.data[index].data()['title'],
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            color: Colors.grey.shade300,
+                                            fontSize: 18.0,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -373,11 +377,15 @@ class _FeaturedState extends State<Featured> {
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(left: 10.0),
-                                      child: Text(
-                                        snapshot.data[index].data()['title'],
-                                        style: TextStyle(
-                                          color: Colors.grey.shade300,
-                                          fontSize: 18.0,
+                                      child: SizedBox(
+                                        width: 200.0,
+                                        child: Text(
+                                          snapshot.data[index].data()['title'],
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            color: Colors.grey.shade300,
+                                            fontSize: 18.0,
+                                          ),
                                         ),
                                       ),
                                     ),

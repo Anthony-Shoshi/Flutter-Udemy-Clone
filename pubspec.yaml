@@ -27,14 +27,16 @@ dependencies:
   cloud_firestore: ^1.0.7
   cupertino_icons: ^1.0.0
   eva_icons_flutter: ^2.0.1
-  firebase_auth: ^1.1.2
-  firebase_core: ^1.1.0
+  firebase_auth: ^1.1.4
+  firebase_core: ^1.1.1
   firebase_messaging: ^9.1.3
   flutter_easyloading: ^2.2.1
+  flutter_share: ^2.0.0
   font_awesome_flutter: ^8.10.0
   get: ^3.13.2
-  google_sign_in: ^5.0.2
+  google_sign_in: ^5.0.3
   hexcolor: ^2.0.3
+  package_info: ^2.0.0
   page_transition: ^1.1.7+6
   shared_preferences: ^2.0.5
   video_player: null

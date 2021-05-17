@@ -8,15 +8,19 @@ class DataController extends GetxController {
     return querySnapshot.docs;
   }
 
-  Future getCartData() async {
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('cart').get();
+  Future getCartData(String userId) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('cart')
+        .where('user_id', isEqualTo: userId)
+        .get();
     return querySnapshot.docs;
   }
 
-  Future getWishlistData() async {
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('wishlist').get();
+  Future getWishlistData(String userId) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('wishlist')
+        .where('user_id', isEqualTo: userId)
+        .get();
     return querySnapshot.docs;
   }
 

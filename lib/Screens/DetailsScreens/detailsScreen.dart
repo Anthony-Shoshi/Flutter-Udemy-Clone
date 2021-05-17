@@ -4,7 +4,10 @@ import 'package:chewie/chewie.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
+import 'package:package_info/package_info.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:video_player/video_player.dart';
 
@@ -20,6 +23,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
       VideoPlayerController.network(Get.arguments['video_url']);
   ChewieController chewieController;
   Authentication authentication = Authentication();
+  QueryDocumentSnapshot queryDocSnap;
+
+  String appName;
+  String packageName;
+  String version;
+  String buildNumber;
 
   @override
   void initState() {
@@ -31,6 +40,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       autoInitialize: true,
       aspectRatio: 16 / 9,
     );
+    queryDocSnap = Get.arguments;
   }
 
   @override
@@ -42,6 +52,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> share() async {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      appName = packageInfo.appName;
+      packageName = packageInfo.packageName;
+      version = packageInfo.version;
+      buildNumber = packageInfo.buildNumber;
+      print(appName);
+      await FlutterShare.share(
+        title: 'Share To',
+        text: 'Udemy App Download Link',
+        linkUrl: 'https://flutter.dev/',
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -53,7 +77,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
               alignment: Alignment.center,
               child: InkWell(
                 child: Icon(EvaIcons.share),
-                onTap: () {},
+                onTap: () {
+                  share();
+                },
               ),
             ),
           ),
@@ -83,7 +109,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                Get.arguments['title'],
+                queryDocSnap['title'],
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 28.0,
@@ -92,7 +118,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  Get.arguments['description'],
+                  queryDocSnap['description'],
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15.0,
@@ -120,7 +146,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               size: 18.0,
                             ),
                             Text(
-                              Get.arguments['ratings'],
+                              queryDocSnap['ratings'],
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15.0,
@@ -146,7 +172,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               size: 18.0,
                             ),
                             Text(
-                              "${Get.arguments['enrolled']} Enrolled",
+                              "${queryDocSnap['enrolled']} Enrolled",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15.0,
@@ -172,41 +198,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               size: 18.0,
                             ),
                             Text(
-                              "${Get.arguments['total_hours']} Total Hours",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(13.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.star,
-                              color: Colors.white,
-                              size: 18.0,
-                            ),
-                            Text(
-                              "Created By ${Get.arguments['author']}",
+                              "${queryDocSnap['total_hours']} Total Hours",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15.0,
@@ -240,7 +232,41 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               size: 18.0,
                             ),
                             Text(
-                              Get.arguments['language'],
+                              "Created By ${queryDocSnap['author']}",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(13.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.white,
+                              size: 18.0,
+                            ),
+                            Text(
+                              queryDocSnap['language'],
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15.0,
@@ -266,7 +292,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               size: 18.0,
                             ),
                             Text(
-                              "Updated ${Get.arguments['updated_at']}",
+                              "Updated ${queryDocSnap['updated_at']}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15.0,
@@ -322,7 +348,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               width: 400.0,
                               placeholder:
                                   AssetImage("assets/images/udemy_logo_2.png"),
-                              image: NetworkImage(Get.arguments['image']),
+                              image: NetworkImage(queryDocSnap['image']),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -350,19 +376,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                 ),
               ),
-              Container(
-                height: 50.0,
-                width: 400.0,
-                decoration: BoxDecoration(
-                  color: Colors.redAccent,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Center(
-                  child: Text(
-                    "Buy Now",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25.0,
+              GestureDetector(
+                onTap: () {
+                  setState(() {});
+                },
+                child: Container(
+                  height: 50.0,
+                  width: 400.0,
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Buy Now",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
                     ),
                   ),
                 ),
@@ -379,37 +410,45 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             .collection('cart')
                             .where('user_id',
                                 isEqualTo: authentication.user.uid)
-                            .where('title', isEqualTo: Get.arguments['title'])
+                            .where('title', isEqualTo: queryDocSnap['title'])
                             .get();
 
                         final List<DocumentSnapshot> documents = result.docs;
-
+                        await EasyLoading.show(
+                          status: 'loading...',
+                          maskType: EasyLoadingMaskType.black,
+                        );
                         if (documents.length > 0) {
                           Get.snackbar(
                             'Oh no',
-                            "${Get.arguments['title']} already added to cart",
+                            "${queryDocSnap['title']} already added to cart",
                             colorText: Colors.white,
                             snackPosition: SnackPosition.TOP,
                           );
+                          await EasyLoading.dismiss();
                         } else {
                           FirebaseFirestore.instance.collection('cart').add({
                             'user_id': authentication.user.uid,
-                            'title': Get.arguments['title'],
-                            'image': Get.arguments['image'],
-                            'author': Get.arguments['author'],
-                            'price': Get.arguments['price'],
-                            'discount': Get.arguments['discount'],
-                            'description': Get.arguments['description'],
-                            'ratings': Get.arguments['ratings'],
-                            'total_hours': Get.arguments['total_hours'],
-                            'enrolled': Get.arguments['enrolled'],
-                          }).whenComplete(() => {
+                            'title': queryDocSnap['title'],
+                            'image': queryDocSnap['image'],
+                            'author': queryDocSnap['author'],
+                            'price': queryDocSnap['price'],
+                            'discount': queryDocSnap['discount'],
+                            'description': queryDocSnap['description'],
+                            'ratings': queryDocSnap['ratings'],
+                            'language': queryDocSnap['language'],
+                            'updated_at': queryDocSnap['updated_at'],
+                            'video_url': queryDocSnap['video_url'],
+                            'total_hours': queryDocSnap['total_hours'],
+                            'enrolled': queryDocSnap['enrolled'],
+                          }).whenComplete(() async => {
                                 Get.snackbar(
                                   'Success',
-                                  "${Get.arguments['title']} added to cart",
+                                  "${queryDocSnap['title']} added to cart",
                                   colorText: Colors.white,
                                   snackPosition: SnackPosition.TOP,
                                 ),
+                                await EasyLoading.dismiss(),
                               });
                         }
                       },
@@ -438,39 +477,47 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             .collection('wishlist')
                             .where('user_id',
                                 isEqualTo: authentication.user.uid)
-                            .where('title', isEqualTo: Get.arguments['title'])
+                            .where('title', isEqualTo: queryDocSnap['title'])
                             .get();
 
                         final List<DocumentSnapshot> documents = result.docs;
-
+                        await EasyLoading.show(
+                          status: 'loading...',
+                          maskType: EasyLoadingMaskType.black,
+                        );
                         if (documents.length > 0) {
                           Get.snackbar(
                             'Oh no',
-                            "${Get.arguments['title']} already added to wishlist",
+                            "${queryDocSnap['title']} already added to wishlist",
                             colorText: Colors.white,
                             snackPosition: SnackPosition.TOP,
                           );
+                          await EasyLoading.dismiss();
                         } else {
                           FirebaseFirestore.instance
                               .collection('wishlist')
                               .add({
                             'user_id': authentication.user.uid,
-                            'title': Get.arguments['title'],
-                            'image': Get.arguments['image'],
-                            'author': Get.arguments['author'],
-                            'price': Get.arguments['price'],
-                            'discount': Get.arguments['discount'],
-                            'description': Get.arguments['description'],
-                            'ratings': Get.arguments['ratings'],
-                            'total_hours': Get.arguments['total_hours'],
-                            'enrolled': Get.arguments['enrolled'],
-                          }).whenComplete(() => {
+                            'title': queryDocSnap['title'],
+                            'image': queryDocSnap['image'],
+                            'author': queryDocSnap['author'],
+                            'price': queryDocSnap['price'],
+                            'discount': queryDocSnap['discount'],
+                            'description': queryDocSnap['description'],
+                            'ratings': queryDocSnap['ratings'],
+                            'language': queryDocSnap['language'],
+                            'updated_at': queryDocSnap['updated_at'],
+                            'video_url': queryDocSnap['video_url'],
+                            'total_hours': queryDocSnap['total_hours'],
+                            'enrolled': queryDocSnap['enrolled'],
+                          }).whenComplete(() async => {
                                     Get.snackbar(
                                       'Success',
-                                      "${Get.arguments['title']} added to wishlist",
+                                      "${queryDocSnap['title']} added to wishlist",
                                       colorText: Colors.white,
                                       snackPosition: SnackPosition.TOP,
                                     ),
+                                    await EasyLoading.dismiss(),
                                   });
                         }
                       },

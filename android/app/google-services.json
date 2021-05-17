@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:880357747983:android:ae2e2352cd23619983e27a",
+        "mobilesdk_app_id": "1:880357747983:android:525dfd408b943d3183e27a",
         "android_client_info": {
-          "package_name": "com.example.UdemyClone"
+          "package_name": "net.grapex.udemyclone"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "880357747983-prcvoei7gjqpcej2eesuqabr3nf62t5c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.grapex.udemyclone",
+            "certificate_hash": "e2ce2401d9ea89382089b2847f103eb8a3e80aa5"
+          }
+        },
         {
           "client_id": "880357747983-n6noa4ra6f58hfo0no7cmb37uq6sapv4.apps.googleusercontent.com",
           "client_type": 3

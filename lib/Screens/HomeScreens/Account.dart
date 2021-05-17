@@ -1,4 +1,5 @@
 import 'package:UdemyClone/Screens/HomeScreen.dart';
+import 'package:UdemyClone/Screens/HomeScreens/MyList.dart';
 import 'package:UdemyClone/Screens/landingPage.dart';
 import 'package:UdemyClone/Services/Authentication.dart';
 import 'package:UdemyClone/Services/PrefStorage.dart';
@@ -32,10 +33,10 @@ class _AccountState extends State<Account> {
               child: InkWell(
                 child: Icon(EvaIcons.shoppingCartOutline),
                 onTap: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
                     PageTransition(
-                        child: HomeScreen(),
+                        child: MyList(),
                         type: PageTransitionType.leftToRightWithFade),
                   );
                 },

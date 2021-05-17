@@ -14,6 +14,10 @@ It basically a Udemy clone project where firebase is used as database. You can e
 - Nice Loader
 - Latest packages are used
 
+# Sample Screen Shot:
+
+![183944910_5932499906760952_3418373951613740932_n](https://user-images.githubusercontent.com/41549963/118549220-f9d14000-b77c-11eb-98da-55e94909d58b.jpg)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

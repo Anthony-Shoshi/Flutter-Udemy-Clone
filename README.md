@@ -1,6 +1,18 @@
-# UdemyClone
+# Udemy Clone using Flutter
 
-A new Flutter project.
+It basically a Udemy clone project where firebase is used as database. You can easily clone it from this git account and edit for your own use. Please give star you like this project.
+
+# Functionalities:
+
+- User friendly design
+- Google Sign in
+- Video Player integrated
+- Search Course
+- Add to Cart and Wishlist
+- Swift to remove data from cart & wishlist
+- Pull to refresh in Home Screen
+- Nice Loader
+- Latest packages are used
 
 ## Getting Started
 

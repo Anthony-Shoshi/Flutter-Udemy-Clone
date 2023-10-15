@@ -49,7 +49,6 @@ class _SignInPageState extends State<SignInPage> {
                   },
                   icon: Icon(FontAwesomeIcons.envelope),
                   label: Text("Sign In with Email"),
-                  // TODO: Check that is applied
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                   ),
@@ -88,7 +87,6 @@ class _SignInPageState extends State<SignInPage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 15.0, top: 100.0),
                 child: TextButton.icon(
-                  // TODO: Check that is applied
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                   ),
@@ -115,7 +113,6 @@ class _SignInPageState extends State<SignInPage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: TextButton.icon(
-                  // TODO: Check that is applied
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                   ),
@@ -129,7 +126,6 @@ class _SignInPageState extends State<SignInPage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
                 child: TextButton.icon(
-                  // TODO: Check that is applied
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                   ),

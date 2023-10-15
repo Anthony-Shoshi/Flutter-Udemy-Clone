@@ -37,7 +37,6 @@ class _SignUpPageState extends State<SignUpPage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: TextButton.icon(
-                  // TODO: Check that is applied
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                   ),
@@ -57,7 +56,6 @@ class _SignUpPageState extends State<SignUpPage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: TextButton.icon(
-                  // TODO: Check that is applied
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                   ),
@@ -71,7 +69,6 @@ class _SignUpPageState extends State<SignUpPage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
                 child: TextButton.icon(
-                  // TODO: Check that is applied
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                   ),

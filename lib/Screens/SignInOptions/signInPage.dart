@@ -1,15 +1,13 @@
 import 'package:UdemyClone/Screens/HomeScreen.dart';
 import 'package:UdemyClone/Screens/SignInOptions/signUpPage.dart';
 import 'package:UdemyClone/Services/Authentication.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SignInPage extends StatefulWidget {
-  SignInPage({Key key}) : super(key: key);
+  SignInPage() : super();
 
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -39,7 +37,7 @@ class _SignInPageState extends State<SignInPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 0.0),
-                child: FlatButton.icon(
+                child: TextButton.icon(
                   onPressed: () async {
                     await EasyLoading.show(
                       status: 'loading...',
@@ -51,7 +49,10 @@ class _SignInPageState extends State<SignInPage> {
                   },
                   icon: Icon(FontAwesomeIcons.envelope),
                   label: Text("Sign In with Email"),
-                  color: Colors.white,
+                  // TODO: Check that is applied
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
                 ),
               ),
               Padding(
@@ -86,21 +87,24 @@ class _SignInPageState extends State<SignInPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 15.0, top: 100.0),
-                child: FlatButton.icon(
-                  color: Colors.white,
+                child: TextButton.icon(
+                  // TODO: Check that is applied
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: () async {
                     await EasyLoading.show(
                       status: 'loading...',
                       maskType: EasyLoadingMaskType.black,
                     );
-                    await authentication.googleSignIn().whenComplete(() => {
-                          Navigator.pushReplacement(
+                    await authentication.googleSignIn().whenComplete(
+                          () => Navigator.pushReplacement(
                             context,
                             PageTransition(
                                 child: HomeScreen(),
                                 type: PageTransitionType.leftToRightWithFade),
                           ),
-                        });
+                        );
                     await EasyLoading.dismiss();
                     print("Google sign in");
                   },
@@ -110,8 +114,11 @@ class _SignInPageState extends State<SignInPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
-                child: FlatButton.icon(
-                  color: Colors.white,
+                child: TextButton.icon(
+                  // TODO: Check that is applied
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: () {
                     print("Facebook sign in");
                   },
@@ -121,8 +128,11 @@ class _SignInPageState extends State<SignInPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
-                child: FlatButton.icon(
-                  color: Colors.white,
+                child: TextButton.icon(
+                  // TODO: Check that is applied
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: () {
                     print("Apple sign in");
                   },

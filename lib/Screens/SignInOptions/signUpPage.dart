@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SignUpPage extends StatefulWidget {
-  SignUpPage({Key key}) : super(key: key);
+  SignUpPage() : super();
 
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -36,8 +36,11 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
-                child: FlatButton.icon(
-                  color: Colors.white,
+                child: TextButton.icon(
+                  // TODO: Check that is applied
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: () async {
                     await EasyLoading.show(
                       status: 'loading...',
@@ -53,8 +56,11 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
-                child: FlatButton.icon(
-                  color: Colors.white,
+                child: TextButton.icon(
+                  // TODO: Check that is applied
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: () {
                     print("Facebook sign in");
                   },
@@ -64,8 +70,11 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
-                child: FlatButton.icon(
-                  color: Colors.white,
+                child: TextButton.icon(
+                  // TODO: Check that is applied
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: () {
                     print("Apple sign in");
                   },

@@ -1,10 +1,8 @@
-import 'package:UdemyClone/Screens/HomeScreen.dart';
 import 'package:UdemyClone/Screens/HomeScreens/MyList.dart';
 import 'package:UdemyClone/Screens/landingPage.dart';
 import 'package:UdemyClone/Services/Authentication.dart';
 import 'package:UdemyClone/Services/PrefStorage.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:page_transition/page_transition.dart';
@@ -81,7 +79,7 @@ class _AccountState extends State<Account> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 40.0),
-                    child: FlatButton(
+                    child: TextButton(
                       onPressed: () {},
                       child: Text(
                         "Become an Instructor",
@@ -307,19 +305,16 @@ class _AccountState extends State<Account> {
                     await authentication
                         .signOut()
                         .whenComplete(
-                          () async => {
-                            await prefStorage.deleteUserInfo('email', 'name'),
-                          },
+                          () async =>
+                              await prefStorage.deleteUserInfo('email', 'name'),
                         )
-                        .whenComplete(() => {
-                              Navigator.pushReplacement(
-                                context,
-                                PageTransition(
-                                  child: LandingPage(),
-                                  type: PageTransitionType.leftToRightWithFade,
-                                ),
-                              )
-                            });
+                        .whenComplete(() => Navigator.pushReplacement(
+                              context,
+                              PageTransition(
+                                child: LandingPage(),
+                                type: PageTransitionType.leftToRightWithFade,
+                              ),
+                            ));
                     await EasyLoading.dismiss();
                   },
                   child: Text(

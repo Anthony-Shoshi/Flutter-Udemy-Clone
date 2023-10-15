@@ -18,26 +18,26 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   chewie: null
-  cloud_firestore: ^1.0.7
+  cloud_firestore: ^4.9.3
   cupertino_icons: ^1.0.0
-  eva_icons_flutter: ^2.0.1
-  firebase_auth: ^1.1.4
-  firebase_core: ^1.1.1
-  firebase_messaging: ^9.1.3
-  flutter_easyloading: ^2.2.1
+  eva_icons_flutter: ^3.0.0
+  firebase_auth: ^4.10.1
+  firebase_core: ^2.17.0
+  firebase_messaging: ^14.6.9
+  flutter_easyloading: ^3.0.0
   flutter_share: ^2.0.0
-  font_awesome_flutter: ^8.10.0
-  get: ^3.13.2
-  google_sign_in: ^5.0.3
-  hexcolor: ^2.0.3
+  font_awesome_flutter: ^10.5.0
+  get: ^4.0.0
+  google_sign_in: ^6.1.5
+  hexcolor: ^3.0.0
   package_info: ^2.0.0
-  page_transition: ^1.1.7+6
+  page_transition: ^2.0.2
   shared_preferences: ^2.0.5
   video_player: null
 

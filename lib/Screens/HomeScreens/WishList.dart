@@ -5,9 +5,7 @@ import 'package:UdemyClone/Services/Authentication.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:page_transition/page_transition.dart';
 
 class WishList extends StatefulWidget {
@@ -49,7 +47,7 @@ class _WishListState extends State<WishList> {
         builder: (value) {
           return FutureBuilder(
             future: value.getWishlistData(authentication.user.uid),
-            builder: (context, snapshot) {
+            builder: (context, AsyncSnapshot<dynamic> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
                   child: CircularProgressIndicator(

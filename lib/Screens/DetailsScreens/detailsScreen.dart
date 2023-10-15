@@ -12,7 +12,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:video_player/video_player.dart';
 
 class DetailsScreen extends StatefulWidget {
-  DetailsScreen({Key key}) : super(key: key);
+  DetailsScreen() : super();
 
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
@@ -21,14 +21,14 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   VideoPlayerController videoPlayerController =
       VideoPlayerController.network(Get.arguments['video_url']);
-  ChewieController chewieController;
+  late ChewieController chewieController;
   Authentication authentication = Authentication();
-  QueryDocumentSnapshot queryDocSnap;
+  late QueryDocumentSnapshot queryDocSnap;
 
-  String appName;
-  String packageName;
-  String version;
-  String buildNumber;
+  late String appName;
+  late String packageName;
+  late String version;
+  late String buildNumber;
 
   @override
   void initState() {
@@ -320,6 +320,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           videoPlayerController.dispose();
                         }
                         Navigator.pop(context);
+                        return Future.value(false);
                       },
                       child: Container(
                         child: Padding(

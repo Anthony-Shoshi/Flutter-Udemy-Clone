@@ -19,6 +19,7 @@ class _FeaturedState extends State<Featured> {
       context,
       PageTransition(child: HomeScreen(), type: PageTransitionType.fade),
     );
+    return Future<Null>.value();
   }
 
   @override
@@ -131,7 +132,7 @@ class _FeaturedState extends State<Featured> {
                   builder: (value) {
                     return FutureBuilder(
                       future: value.getData('top'),
-                      builder: (context, snapshot) {
+                      builder: (context, AsyncSnapshot<dynamic> snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return Center(
@@ -345,7 +346,7 @@ class _FeaturedState extends State<Featured> {
                   builder: (value) {
                     return FutureBuilder(
                       future: value.getData('top'),
-                      builder: (context, snapshot) {
+                      builder: (context, AsyncSnapshot<dynamic> snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return Center(

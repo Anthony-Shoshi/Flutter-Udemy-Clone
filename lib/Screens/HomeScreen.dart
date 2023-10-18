@@ -61,23 +61,23 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.star),
-            title: Text("Featured"),
+            label: 'Featured',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            title: Text("Search"),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.music_video),
-            title: Text("My Courses"),
+            label: 'My Courses',
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.heart),
-            title: Text("Wishlist"),
+            label: 'Wishlist',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_box),
-            title: Text("Account"),
+            label: 'Account',
           ),
         ],
       ),

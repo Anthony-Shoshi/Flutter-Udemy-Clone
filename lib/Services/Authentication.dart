@@ -8,30 +8,30 @@ class Authentication {
   final PrefStorage prefStorage = new PrefStorage();
 
   Future<String> googleSignIn() async {
-    final GoogleSignInAccount googleSignInAccount =
+    final GoogleSignInAccount? googleSignInAccount =
         await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
-    final GoogleAuthCredential authCredential = GoogleAuthProvider.credential(
+        await googleSignInAccount!.authentication;
+    final AuthCredential authCredential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken);
     final UserCredential userCredential =
         await _firebaseAuth.signInWithCredential(authCredential);
-    final User user = userCredential.user;
+    final User? user = userCredential.user;
 
-    assert(user.displayName != null);
-    assert(user.email != null);
+    assert(user!.displayName != null);
+    assert(user!.email != null);
 
-    final User currentUser = _firebaseAuth.currentUser;
-    assert(currentUser.uid == user.uid);
+    final User currentUser = _firebaseAuth.currentUser!;
+    assert(currentUser.uid == user!.uid);
 
-    prefStorage.storeUserInfo("name", user.displayName);
-    prefStorage.storeUserInfo("email", user.email);
+    prefStorage.storeUserInfo("name", user!.displayName!);
+    prefStorage.storeUserInfo("email", user.email!);
 
     return 'Error occured!';
   }
 
-  User get user => _firebaseAuth.currentUser;
+  User get user => _firebaseAuth.currentUser!;
 
   Future<String> signOut() async {
     _googleSignIn.signOut();

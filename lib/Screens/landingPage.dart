@@ -1,12 +1,11 @@
 import 'package:UdemyClone/Screens/HomeScreen.dart';
 import 'package:UdemyClone/Screens/SignInOptions/signInPage.dart';
-import 'package:UdemyClone/Screens/SignInOptions/signUpPage.dart';
 import 'package:UdemyClone/Services/PrefStorage.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 class LandingPage extends StatefulWidget {
-  LandingPage({Key key}) : super(key: key);
+  LandingPage() : super();
 
   @override
   _LandingPageState createState() => _LandingPageState();

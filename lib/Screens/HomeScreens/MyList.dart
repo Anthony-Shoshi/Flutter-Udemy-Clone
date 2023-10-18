@@ -25,7 +25,7 @@ class _MyListState extends State<MyList> {
         builder: (value) {
           return FutureBuilder(
             future: value.getCartData(authentication.user.uid),
-            builder: (context, snapshot) {
+            builder: (context, AsyncSnapshot<dynamic> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
                   child: CircularProgressIndicator(

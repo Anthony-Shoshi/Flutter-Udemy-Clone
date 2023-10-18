@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:UdemyClone/Controller/DataController.dart';
 import 'package:UdemyClone/Screens/DetailsScreens/detailsScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,7 +13,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   final TextEditingController searchController = TextEditingController();
 
-  QuerySnapshot snapshot;
+  late QuerySnapshot<dynamic> snapshot;
   bool isExecuted = false;
   bool isLoading = false;
 
@@ -48,7 +46,7 @@ class _SearchState extends State<Search> {
                           width: 150.0,
                           fit: BoxFit.fill,
                           image: NetworkImage(
-                            snapshot.docs[index].data()['image'],
+                            snapshot.docs[index].data()?['image'],
                           ),
                           placeholder:
                               AssetImage("assets/images/udemy_logo_2.jpg"),

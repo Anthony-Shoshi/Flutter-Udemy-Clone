@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key key}) : super(key: key);
+  const SplashScreen() : super();
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -25,11 +25,11 @@ class _SplashScreenState extends State<SplashScreen> {
     goToNext();
     FirebaseMessaging.instance
         .getInitialMessage()
-        .then((RemoteMessage message) {});
+        .then((RemoteMessage? message) {});
 
     //on foreground notification
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      if (message.notification.body == "Notification body") {
+      if (message.notification?.body == "Notification body") {
         Get.to(() => WishList());
       }
     });
